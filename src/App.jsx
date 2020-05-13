@@ -8,9 +8,15 @@ const App = () => {
     <BrowserRouter>
       <div>
         <h1>welcome to react app!!</h1>
-        <Route exact path='/' component={Booklist} />
-        <Route path='/vue' component={Booklist} />
-        <Route path='/angular' component={Booklist} />
+        <ul>
+          <li><Link to='/'>React</Link></li>
+          <li><Link to='/vue'>vue</Link></li>
+          <li><Link to='/angular'>angular</Link></li>
+        </ul>
+        <hr />
+        <Route exact path='/' render={props => <Booklist language={languages[0]} />} />
+        <Route path='/vue' render={props => <Booklist language={languages[1]} />} />
+        <Route path='/angular'  render={props => <Booklist language={languages[2]} />} />
       </div>
     </BrowserRouter>
   );
