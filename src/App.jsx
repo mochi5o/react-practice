@@ -2,6 +2,10 @@ import React from 'react';
 import Booklist from './components/Booklist';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
+const getDataFromAPI = keyword => {
+  return `${keyword} books`;
+}
+
 const App = () => {
   const languages = ['React', 'Vue', 'Angular'];
   return (
@@ -14,9 +18,37 @@ const App = () => {
           <li><Link to='/angular'>angular</Link></li>
         </ul>
         <hr />
-        <Route exact path='/' render={props => <Booklist language={languages[0]} />} />
-        <Route path='/vue' render={props => <Booklist language={languages[1]} />} />
-        <Route path='/angular'  render={props => <Booklist language={languages[2]} />} />
+        <Route
+          exact
+          path='/'
+          render={
+            props =>
+            <Booklist
+              language={languages[0]}
+              getData={keyword => getDataFromAPI(keyword)}
+            />
+          }
+        />
+        <Route
+          path='/vue'
+          render={
+            props =>
+            <Booklist
+              language={languages[1]}
+              getData={keyword => getDataFromAPI(keyword)}
+            />
+          }
+        />
+        <Route
+          path='/angular'
+          render={
+            props =>
+            <Booklist
+              language={languages[2]}
+              getData={keyword => getDataFromAPI(keyword)}
+            />
+          }
+        />
       </div>
     </BrowserRouter>
   );

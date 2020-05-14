@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Booklist = props => {
+    const result = props.getData?.(props.language);
     return (
         <div>
-            <p>this is {props.language} book list component</p>
+            <p>this is {result} list component</p>
         </div>
     );
 }
