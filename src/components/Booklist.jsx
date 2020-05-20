@@ -7,8 +7,14 @@ const Booklist = props => {
     }, [props])
     return (
         <div>
-            <p>this is {JSON.stringify(bookData)} list component</p>
-        </div>
+        <ul>
+            {
+                bookData === null
+                ? <p>Now loading...</p>
+                : bookData.data.items.map((x, index) => <li key={index}>{x.volumeInfo.title}</li>)
+            }
+        </ul>
+    </div>
     );
 }
 
