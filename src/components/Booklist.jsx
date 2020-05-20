@@ -5,6 +5,7 @@ const Booklist = props => {
     useEffect(() => {
         const result = props.getData?.(props.language).then(response => setBookData(response));
     }, [props])
+    console.log(bookData);
     return (
         <div>
         <ul>
