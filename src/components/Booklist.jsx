@@ -12,7 +12,9 @@ const Booklist = props => {
             {
                 bookData === null
                 ? <p>Now loading...</p>
-                : bookData.data.items.map((x, index) => <li key={index}>{x.volumeInfo.title}</li>)
+                : bookData.data.items.map((x, index) =>
+                    <li key={index}>{x.volumeInfo.title}</li>
+                    )
             }
         </ul>
     </div>
