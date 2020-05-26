@@ -5,14 +5,19 @@ const Booklist = props => {
     useEffect(() => {
         const result = props.getData?.(props.language).then(response => setBookData(response));
     }, [props])
-    console.log(bookData);
     return (
         <div>
         <ul>
             {
                 bookData === null
                 ? <p>Now loading...</p>
-                : bookData.data.items.map((x, index) => <li key={index}>{x.volumeInfo.title}</li>)
+                : bookData.data.items.map((x, index) =>
+                    <div key={index}>
+                    <li><h4><a href={x.volumeInfo.canonicalVolumeLink}>{x.volumeInfo.title}</a></h4></li>
+                        <p>{x.volumeInfo.authors} ・ {x.volumeInfo.publisher}</p>
+                        { typeof x.volumeInfo.imageLinks !== 'undefined' && <img src={x.volumeInfo.imageLinks.smallThumbnail}></img>}
+                    </div>
+                )
             }
         </ul>
     </div>
