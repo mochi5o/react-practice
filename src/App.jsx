@@ -16,14 +16,14 @@ const App = () => {
       <div>
         <h1>welcome to react app!!</h1>
         <ul>
-          <li><Link to='/'>React</Link></li>
+          <li><Link to='/react-practice'>React</Link></li>
           <li><Link to='/vue'>vue</Link></li>
           <li><Link to='/angular'>angular</Link></li>
         </ul>
         <hr />
         <Route
           exact
-          path='/'
+          path='/react-practice'
           render={
             props =>
             <Booklist
