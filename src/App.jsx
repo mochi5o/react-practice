@@ -1,72 +1,126 @@
 import React from 'react';
-import Booklist from './components/Booklist';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-import Test from './components/Test';
+import Waterlist from './components/Waterlist';
 
 const getDataFromAPI = async keyword => {
-  const requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=intitle:'
-  const result = await axios.get(`${requestUrl}${keyword}`);
+  const url = 'https://livlog.xyz/springwater/springWater?q='
+  const result = await axios.get(`${url}${keyword}`);
   return result;
 }
-const getTestAPI = async keyword => {
-  const url = 'https://livlog.xyz/springwater/springWater?q='
-  const testresult = await axios.get(`${url}${keyword}`);
-  return testresult;
-}
 
-console.log('ok');
+console.log(getDataFromAPI('愛知県'));
 
 const App = () => {
-  const languages = ['React', 'Vue', 'Angular'];
-  const pref = ['愛知県'];
+  const pref = ['福岡県','熊本県','大分県','佐賀県','長崎県','宮崎県','鹿児島県'];
 
   return (
     <BrowserRouter>
       <div>
-        <h1>welcome to react app!!</h1>
+        <h1>九州の名水</h1>
         <ul>
-          <li><Link to='/react-practice'>React</Link></li>
-          <li><Link to='/vue'>vue</Link></li>
-          <li><Link to='/angular'>angular</Link></li>
+          <li><Link to='/react-practice'>お気に入り湧き水スポット</Link></li>
+          <li><Link to='/fukuoka'>福岡県</Link></li>
+          <li><Link to='/kumamoto'>熊本県</Link></li>
+          <li><Link to='/ooita'>大分県</Link></li>
+          <li><Link to='/saga'>佐賀県</Link></li>
+          <li><Link to='/nagasaki'>長崎県</Link></li>
+          <li><Link to='/miyazaki'>宮崎県</Link></li>
+          <li><Link to='/kagoshima'>鹿児島県</Link></li>
+          <li><Link to='/search'>search</Link></li>
         </ul>
         <hr />
-        <Route
-          exact
-          path='/react-practice'
-          render={
-            props =>
-            <Booklist
-              language={languages[0]}
-              getData={keyword => getDataFromAPI(keyword)}
-            />
-          }
-        />
-        <Route
-          path='/vue'
-          render={
-            props =>
-            <Booklist
-              language={languages[1]}
-              getData={keyword => getDataFromAPI(keyword)}
-            />
-          }
-        />
-        <Route
-          path='/angular'
-          render={
-            props =>
-            <Booklist
-              language={languages[2]}
-              getData={keyword => getDataFromAPI(keyword)}
-            />
-          }
-        />
       </div>
-      <Test
-      pref={pref[0]}
-      getTest={keyword => getTestAPI(keyword)}
-    />
+      <Route
+        path='/react-practice'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[0]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/fukuoka'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[0]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/kumamoto'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[1]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/ooita'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[2]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/saga'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[3]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/nagasaki'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[4]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/miyazaki'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[5]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/kagoshima'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[6]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
+      <Route
+        path='/nagasaki'
+        render={
+          props =>
+            <Waterlist
+              pref={pref[0]}
+              getList={keyword => getDataFromAPI(keyword)}
+            />
+        }
+      />
     </BrowserRouter>
 
   );
