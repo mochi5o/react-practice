@@ -2,15 +2,25 @@ import React from 'react';
 import Booklist from './components/Booklist';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import Test from './components/Test';
 
 const getDataFromAPI = async keyword => {
   const requestUrl = 'https://www.googleapis.com/books/v1/volumes?q=intitle:'
   const result = await axios.get(`${requestUrl}${keyword}`);
   return result;
 }
+const getTestAPI = async keyword => {
+  const url = 'https://livlog.xyz/springwater/springWater?q='
+  const testresult = await axios.get(`${url}${keyword}`);
+  return testresult;
+}
+
+console.log('ok');
 
 const App = () => {
   const languages = ['React', 'Vue', 'Angular'];
+  const pref = ['愛知県'];
+
   return (
     <BrowserRouter>
       <div>
@@ -53,7 +63,12 @@ const App = () => {
           }
         />
       </div>
+      <Test
+      pref={pref[0]}
+      getTest={keyword => getTestAPI(keyword)}
+    />
     </BrowserRouter>
+
   );
 }
 
