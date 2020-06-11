@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import Waterlist from './components/Waterlist';
+import MyRoute from './components/MyRoute';
 
 const getDataFromAPI = async keyword => {
   const url = 'https://livlog.xyz/springwater/springWater?q='
@@ -19,7 +20,7 @@ const App = () => {
       <div>
         <h1>九州の名水</h1>
         <ul>
-          <li><Link to='/react-practice'>お気に入り湧き水スポット</Link></li>
+          <li><Link to='/react-practice'>湧き水廻り</Link></li>
           <li><Link to='/fukuoka'>福岡県</Link></li>
           <li><Link to='/kumamoto'>熊本県</Link></li>
           <li><Link to='/ooita'>大分県</Link></li>
@@ -35,10 +36,7 @@ const App = () => {
         path='/react-practice'
         render={
           props =>
-            <Waterlist
-              pref={pref[0]}
-              getList={keyword => getDataFromAPI(keyword)}
-            />
+            <MyRoute />
         }
       />
       <Route
